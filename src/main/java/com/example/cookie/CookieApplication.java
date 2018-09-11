@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CookieApplication {
-//test comment mario
+//test comment yannica
 	public static void main(String[] args) {
 		SpringApplication.run(CookieApplication.class, args);
 	}
