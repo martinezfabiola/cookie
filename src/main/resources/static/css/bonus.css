@@ -1,0 +1,36 @@
+.rowTop{
+	margin-top: 2.5em;
+	font-size: 1.5em;
+}
+.rowTop2{
+	margin-top: 2.5em;
+}
+
+
+.rowBot{
+	margin-bottom : 1em;
+}
+
+.gris{
+	background-color: rgba(100,138,187,0.9);
+	padding: 20px;
+	border-radius: 6px;	
+	-moz-box-shadow: 5px 5px 5px 2px #656565;
+	-webkit-box-shadow: 5px 5px 5px 2px #656565;
+	-o-box-shadow: 5px 5px 5px 2px #656565;
+	box-shadow: 5px 5px 5px 2px #656565;	
+}
+
+.grisclair{
+	background-color: rgba(235,235,235,0.65);
+	padding: 20px;
+	border-radius: 6px;	
+	-moz-box-shadow: 5px 5px 5px 2px #656565;
+	-webkit-box-shadow: 5px 5px 5px 2px #656565;
+	-o-box-shadow: 5px 5px 5px 2px #656565;
+	box-shadow: 5px 5px 5px 2px #656565;	
+}
+
+.butmail{
+	margin-left : -1.8em;
+}

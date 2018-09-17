@@ -32,5 +32,10 @@ public class testcontroller {
         return "cookie_connexion";
     }
 
+    @GetMapping("/accueil")
+    public String getAccueil(Model model) {
+        return "index";
+    }
+
 }
 
