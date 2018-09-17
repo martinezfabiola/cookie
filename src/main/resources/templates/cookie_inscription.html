@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title></title>
+</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="cookie_inscription.css">
+<body>
+<div class="container">
+    <h2>INSCRIPTION</h2>
+    <form action="/action_page.php">
+
+        <!-- Nom -->
+        <div class="form-group row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <!-- <label for="nom">Nom:</label> -->
+                <input type="text" class="form-control field" id="nom" placeholder="Nom" name="nom">
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+
+        <!-- Prenom -->
+        <div class="form-group row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <!-- <label for="prenom">Prenom:</label> -->
+                <input type="text" class="form-control field" id="prenom" placeholder="Prenom" name="prenom">
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+
+
+        <div class="row">
+            <!-- Email -->
+            <div class="form-group col-lg-4">
+                <!-- <label for="email">Email:</label> -->
+                <input type="email" class="form-control field" id="email" placeholder="Email" name="email">
+            </div>
+            <!-- Adresse -->
+            <div class="form-group col-lg-4">
+                <!-- <label for="adresse">Adresse:</label> -->
+                <input type="text" class="form-control field" id="adresse" placeholder="Adresse" name="adresse">
+            </div>
+            <!-- Mot de passe -->
+            <div class="form-group col-lg-4">
+                <!-- <label for="mdp">Mot de passe:</label> -->
+                <input type="text" class="form-control field" id="mdp" placeholder="Mot de passe" name="mdp">
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Telephone -->
+            <div class="form-group col-lg-4">
+                <!-- <label for="telephone">Téléphone:</label> -->
+                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone">
+            </div>
+            <!-- CP / Ville -->
+            <div class="form-group col-lg-4">
+                <!-- <label for="cp_ville">Code postal / Ville:</label> -->
+                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville" name="cp_ville">
+            </div>
+            <!-- Confirmation mot de passe -->
+            <div class="form-group col-lg-4">
+                <!-- <label for="conf_mdp">Confirmation mot de passe:</label> -->
+                <input type="text" class="form-control field" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4 text-center">
+                <button type="submit" class="btn btn-default">Déja inscrit ?  Connecte-toi !</button>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
