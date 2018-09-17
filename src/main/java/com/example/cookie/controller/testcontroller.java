@@ -18,12 +18,18 @@ public class testcontroller {
      * Il lui fournira un "modèle", auquel on pourra rajouter des attributs.
      * Ce modèle sera ensuite forwardé à une page web (dans resources/templates).
      * Le nom de la template est retourné par la fonction. Ici, elle appelle donc le template "users".
+     *
      * @param model le modèle
      * @return
      */
-    @GetMapping("/hello")
-    public  String getUsers (Model model) {
-        return "hello-world";
+    @GetMapping("/inscription")
+    public String getInscription(Model model) {
+        return "cookie_inscription";
+    }
+
+    @GetMapping("/connexion")
+    public String getConnexion(Model model) {
+        return "cookie_connexion";
     }
 
 }
