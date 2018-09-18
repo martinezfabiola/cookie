@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 /**
  * TODO class details.
@@ -20,7 +21,6 @@ import java.util.Iterator;
 public class UserController {
 
     private final UserDao userDao;
-
 
     public UserController(UserDao userDao) {
         this.userDao = userDao;
@@ -54,28 +54,35 @@ public class UserController {
         return "cookie_connexion";
     }
 
-    //TODO : fix check DB (only works with the first element of table)
     @PostMapping("/connexion")
-    public String checkUser(User user, Model model) {
-        ArrayList<User> userList = new ArrayList<>();
-        for (User u : userDao.findAll()) {
-            if ((user.getEmail().equals(u.getEmail())) && (user.getPassword().equals(u.getPassword()))) {
-                return "redirect:/accueil";
-            } else {
-                return "redirect:/connexion";
-            }
+    public String userConnexion(User user, Model model) {
+        if (checkConnexion(user) == true) {
+            return "redirect:/accueil";
+        } else {
+            return "redirect:/oops";
         }
-        return null;
     }
 
-//    for (Iterator<String> i = someIterable.iterator(); i.hasNext();) {
-//        String item = i.next();
-//        System.out.println(item);
-//    }
+    public boolean checkConnexion(User user) {
+        for (User u : userDao.findAll()) {
+            if (user.getEmail().equals(u.getEmail())) {
+                if (user.getPassword().equals(u.getPassword())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     @GetMapping("/accueil")
     public String getAccueil(Model model) {
         return "index";
+    }
+
+    @GetMapping("/oops")
+    public String getOops(Model model) {
+        return "oops";
     }
 
 }
