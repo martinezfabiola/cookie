@@ -1,0 +1,59 @@
+html, body{
+/*  height: 100%;
+*/}
+
+body {
+  background-image: url("../img/cookie_2.jpg");
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #999;
+}
+
+.h2_inscription{
+  color: white;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.h2_connexion{
+  color: white;
+  text-align: center;
+  margin-top: 160px;
+  margin-bottom: 50px;
+}
+
+.field{
+  background:none !important;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  border-color: white;
+  margin-bottom: 50px;
+  color: white !important;
+}
+
+.pass{
+  padding-bottom: 100px;
+}
+
+.btn{
+  background:none !important;
+  color: white;
+  border: none;
+}
+
+.btn:hover {
+  color: #DCDCDC;
+}
+
+.mdp_margin{
+margin-bottom: 10px;
+}
+
+.mdp_font_color{
+color: white !important;
+}
