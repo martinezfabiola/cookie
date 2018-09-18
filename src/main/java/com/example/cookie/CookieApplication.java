@@ -20,8 +20,8 @@ public class CookieApplication {
 		SpringApplication.run(CookieApplication.class, args);
 	}
 
-@PostConstruct
+/*@PostConstruct
 public void init(){
 	userdao.save( new User(null, "Marie", "Gatinois","moi@gmail.com","0647668742","16 rue de la ferme", "95230 Soisy", "passwordturfu", null, null ));
-}
+}*/
 }
