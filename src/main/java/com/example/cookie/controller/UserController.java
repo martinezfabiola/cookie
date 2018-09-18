@@ -36,6 +36,11 @@ public class UserController {
      * @param model le modèle
      * @return
      */
+
+    /*----------------------------
+               MAPPING
+    -----------------------------*/
+    
     @GetMapping("/inscription")
     public String getInscription(Model model) {
         model.addAttribute("userForm", new User());
@@ -44,8 +49,11 @@ public class UserController {
 
     @PostMapping("/inscription")
     public String addUser(User user, Model model) {
-        userDao.save(user);
-        return "redirect:/accueil";
+        if (checkInscription(user) == true) {
+            userDao.save(user);
+            return "redirect:/accueil";
+        }
+        return "redirect:/inscription"; //TODO add message "compte déjà existant"
     }
 
     @GetMapping("/connexion")
@@ -63,6 +71,22 @@ public class UserController {
         }
     }
 
+
+    @GetMapping("/accueil")
+    public String getAccueil(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/oops")
+    public String getOops(Model model) {
+        return "oops";
+    }
+
+    /*----------------------------
+           OTHER METHODS
+    -----------------------------*/
+
+    //Check in DB if input email and input password match
     public boolean checkConnexion(User user) {
         for (User u : userDao.findAll()) {
             if (user.getEmail().equals(u.getEmail())) {
@@ -74,15 +98,14 @@ public class UserController {
         return false;
     }
 
-
-    @GetMapping("/accueil")
-    public String getAccueil(Model model) {
-        return "index";
-    }
-
-    @GetMapping("/oops")
-    public String getOops(Model model) {
-        return "oops";
+    //Check in DB if email doesn't exist
+    public boolean checkInscription(User user) {
+        for (User u : userDao.findAll()) {
+            if (user.getEmail().equals(u.getEmail())) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
