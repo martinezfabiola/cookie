@@ -1,5 +1,6 @@
 package com.example.cookie.controller;
 
+import com.example.cookie.models.ConnexionInfo;
 import com.example.cookie.models.User;
 import com.example.cookie.persistance.UserDao;
 import org.springframework.stereotype.Controller;
@@ -38,22 +39,30 @@ public class UserController {
         return "cookie_inscription";
     }
 
+    @PostMapping("/inscription")
+    public String addUser(User user, Model model) {
+        userDao.save(user);
+        return "redirect:/accueil";
+    }
+
     @GetMapping("/connexion")
     public String getConnexion(Model model) {
+        model.addAttribute("userForm", new ConnexionInfo());
         return "cookie_connexion";
+    }
+
+    @PostMapping("/connexion")
+    public String checkUser(User user, Model model) {
+        if ((user.getEmail().equals("yannicadjaffar@hotmail.fr")) && (user.getPassword().equals("salut"))) {
+            return "redirect:/accueil";
+        } else {
+            return "redirect:/connexion";
+        }
     }
 
     @GetMapping("/accueil")
     public String getAccueil(Model model) {
         return "index";
-    }
-
-    @PostMapping("/inscription")
-    public String addUser(User user, Model model){
-        user.setHistorique(null);
-        user.setShopbag(null);
-        userDao.save(user);
-        return "redirect:/accueil";
     }
 
 }
