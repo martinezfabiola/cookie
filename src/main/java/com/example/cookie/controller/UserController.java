@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * TODO class details.
  *
@@ -51,14 +54,24 @@ public class UserController {
         return "cookie_connexion";
     }
 
+    //TODO : fix check DB (only works with the first element of table)
     @PostMapping("/connexion")
     public String checkUser(User user, Model model) {
-        if ((user.getEmail().equals("yannicadjaffar@hotmail.fr")) && (user.getPassword().equals("salut"))) {
-            return "redirect:/accueil";
-        } else {
-            return "redirect:/connexion";
+        ArrayList<User> userList = new ArrayList<>();
+        for (User u : userDao.findAll()) {
+            if ((user.getEmail().equals(u.getEmail())) && (user.getPassword().equals(u.getPassword()))) {
+                return "redirect:/accueil";
+            } else {
+                return "redirect:/connexion";
+            }
         }
+        return null;
     }
+
+//    for (Iterator<String> i = someIterable.iterator(); i.hasNext();) {
+//        String item = i.next();
+//        System.out.println(item);
+//    }
 
     @GetMapping("/accueil")
     public String getAccueil(Model model) {

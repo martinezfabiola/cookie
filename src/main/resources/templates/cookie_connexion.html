@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
@@ -10,13 +10,14 @@
 <body>
 <div class="container">
     <h2 class="chunck h2_connexion">CONNEXION</h2>
-    <form action="/action_page.php">
+    <form action="#" th:action="@{/connexion}" th:object="${userForm}" method="post">
 
         <!-- Email -->
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="email" class="form-control field" id="email" placeholder="Email" name="email">
+                <input type="email" class="form-control field" id="email" placeholder="Email" name="email"
+                       th:field="*{email}">
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -25,7 +26,8 @@
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="password" class="form-control field  mdp_margin" id="mdp" placeholder="Mot de passe" name="mdp">
+                <input type="password" class="form-control field  mdp_margin" id="mdp" placeholder="Mot de passe"
+                       name="mdp" th:field="*{password}">
                 <input type="checkbox" class="mdp_font_color" onclick="functionMDP()"> Voir mon mot de passe
             </div>
             <div class="col-lg-4"></div>
@@ -40,6 +42,13 @@
             </div>
             <div class="col-lg-4"></div>
         </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <button type="submit" class="btn btn-primary">Je me connecte !</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </form>
 </div>
 </body>
@@ -52,5 +61,7 @@ function functionMDP() {
         x.type = "password";
     }
 }
+
+
 </script>
 </html>
