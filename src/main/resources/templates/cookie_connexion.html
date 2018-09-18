@@ -6,17 +6,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/cookie_connexion.css">
+<link rel="stylesheet" href="../css/cookie_ins_conne.css">
 <body>
 <div class="container">
-    <h2 class="chunck">CONNEXION</h2>
+    <h2 class="chunck h2_connexion">CONNEXION</h2>
     <form action="/action_page.php">
 
         <!-- Email -->
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <!-- <label for="email">Email:</label> -->
                 <input type="email" class="form-control field" id="email" placeholder="Email" name="email">
             </div>
             <div class="col-lg-4"></div>
@@ -26,8 +25,8 @@
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <!-- <label for="mdp">Mot de passe:</label> -->
-                <input type="text" class="form-control field" id="mdp" placeholder="Mot de passe" name="mdp">
+                <input type="password" class="form-control field  mdp_margin" id="mdp" placeholder="Mot de passe" name="mdp">
+                <input type="checkbox" class="mdp_font_color" onclick="functionMDP()"> Voir mon mot de passe
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -41,8 +40,17 @@
             </div>
             <div class="col-lg-4"></div>
         </div>
-
     </form>
 </div>
 </body>
+<script>
+function functionMDP() {
+    var x = document.getElementById("mdp");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+</script>
 </html>

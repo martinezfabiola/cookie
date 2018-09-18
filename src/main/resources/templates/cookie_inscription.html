@@ -5,10 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/cookie_inscription.css">
+<link rel="stylesheet" href="../css/cookie_ins_conne.css">
 <body>
 <div class="container">
-    <h2 class="chunck">INSCRIPTION</h2>
+    <h2 class="chunck h2_inscription">INSCRIPTION</h2>
     <form action="#" th:action="@{/inscription}" th:object="${userForm}" method="post">
 
         <!-- Nom -->
@@ -41,7 +41,8 @@
             </div>
             <!-- Mot de passe -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="mdp" placeholder="Mot de passe" name="mdp" th:field="*{password}">
+                <input type="password" class="form-control field mdp_margin" id="mdp" placeholder="Mot de passe" name="mdp" th:field="*{password}">
+                <input type="checkbox" class="mdp_font_color" onclick="functionMDP()"> Voir mon mot de passe
             </div>
         </div>
 
@@ -56,12 +57,13 @@
             </div>
             <!-- Confirmation mot de passe -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp">
+                <input type="password" class="form-control field mdp_margin" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp">
+                <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()"> Voir mon mot de passe
             </div>
         </div>
         <div class="row">
         	<div class="col-md-4"></div>
-        	<div class="col-md-4">
+        	<div class="col-md-4 text-center">
         		<button type="submit" class="btn btn-primary">C'est parti !</button>
         	</div>
         	<div class="col-md-4"></div>
@@ -81,4 +83,23 @@
 
 </div>
 </body>
+<script>
+function functionMDP() {
+    var x = document.getElementById("mdp");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+function functionCMDP() {
+    var x = document.getElementById("conf_mdp");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+</script>
 </html>
