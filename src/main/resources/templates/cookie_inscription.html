@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
@@ -9,13 +9,13 @@
 <body>
 <div class="container">
     <h2 class="chunck">INSCRIPTION</h2>
-    <form action="/action_page.php">
+    <form action="#" th:action="@{/inscription}" th:object="${userForm}" method="post">
 
         <!-- Nom -->
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="text" class="form-control field" id="nom" placeholder="Nom" name="nom">
+                <input type="text" class="form-control field" th:field="*{lastname}" id="nom" placeholder="Nom" name="nom" >
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -24,7 +24,7 @@
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="text" class="form-control field" id="prenom" placeholder="Prenom" name="prenom">
+                <input type="text" class="form-control field" id="prenom" placeholder="Prenom" name="prenom" th:field="*{firstname}">
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -33,33 +33,41 @@
         <div class="row">
             <!-- Email -->
             <div class="form-group col-lg-4">
-                <input type="email" class="form-control field" id="email" placeholder="Email" name="email">
+                <input type="email" class="form-control field" id="email" placeholder="Email" name="email" th:field="*{email}">
             </div>
             <!-- Adresse -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="adresse" placeholder="Adresse" name="adresse">
+                <input type="text" class="form-control field" id="adresse" placeholder="Adresse" name="adresse" th:field="*{address}">
             </div>
             <!-- Mot de passe -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="mdp" placeholder="Mot de passe" name="mdp">
+                <input type="text" class="form-control field" id="mdp" placeholder="Mot de passe" name="mdp" th:field="*{password}">
             </div>
         </div>
 
         <div class="row">
             <!-- Telephone -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone">
+                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone" th:field="*{phone}">
             </div>
             <!-- CP / Ville -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville" name="cp_ville">
+                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville" name="cp_ville" th:field="*{citycode}">
             </div>
             <!-- Confirmation mot de passe -->
             <div class="form-group col-lg-4">
                 <input type="text" class="form-control field" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp">
             </div>
         </div>
+        <div class="row">
+        	<div class="col-md-4"></div>
+        	<div class="col-md-4">
+        		<button type="submit" class="btn btn-primary">C'est parti !</button>
+        	</div>
+        	<div class="col-md-4"></div>       	
+        </div>
 
+		</form>
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4 text-center">
@@ -70,7 +78,7 @@
 
             <div class="col-lg-4"></div>
         </div>
-    </form>
+    
 </div>
 </body>
 </html>

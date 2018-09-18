@@ -1,8 +1,11 @@
 package com.example.cookie.controller;
 
+import com.example.cookie.models.User;
+import com.example.cookie.persistance.UserDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * TODO class details.
@@ -10,7 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Loïc Ortola on 10/09/2018
  */
 @Controller
-public class testcontroller {
+public class UserController {
+
+    private final UserDao userDao;
+
+
+    public UserController(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     /**
      * Ceci sera mappé sur l'URL '/users'.
@@ -24,6 +34,7 @@ public class testcontroller {
      */
     @GetMapping("/inscription")
     public String getInscription(Model model) {
+        model.addAttribute("userForm", new User());
         return "cookie_inscription";
     }
 
@@ -35,6 +46,14 @@ public class testcontroller {
     @GetMapping("/accueil")
     public String getAccueil(Model model) {
         return "index";
+    }
+
+    @PostMapping("/inscription")
+    public String addUser(User user, Model model){
+        user.setHistorique(null);
+        user.setShopbag(null);
+        userDao.save(user);
+        return "redirect:/accueil";
     }
 
 }
