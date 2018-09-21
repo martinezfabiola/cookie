@@ -1,0 +1,61 @@
+html, body{
+/*  height: 100%;
+*/}
+
+body {
+  background-image: url("../img/cookiehead.jpg");
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #999;
+}
+
+.blue_box{
+	background-color: rgb(100, 138, 187, 0.70) !important;
+	margin-top: 100px;
+	border-radius: 25px;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.white_box{
+	background-color: rgb(255, 255, 255, 0.80) !important;
+	margin-top: 100px;
+	border-radius: 25px;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.size{
+    padding-bottom: 6px;
+	padding-top: 6px;
+	padding-right: 6px;
+    padding-left: 6px;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+.box{
+    border-radius: 6px;
+    border-color: #648abb;
+}
+
+.vcenter {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+.white{
+    color:white;
+}
+
+.table th , .table td{
+    border: 0px none !important;
+    vertical-align: middle;
+}
+
+.table th thead {
+    border: 0px none !important;
+}

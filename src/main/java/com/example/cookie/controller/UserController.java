@@ -40,7 +40,7 @@ public class UserController {
     /*----------------------------
                MAPPING
     -----------------------------*/
-    
+
     @GetMapping("/inscription")
     public String getInscription(Model model) {
         model.addAttribute("userForm", new User());
@@ -80,6 +80,16 @@ public class UserController {
     @GetMapping("/oops")
     public String getOops(Model model) {
         return "oops";
+    }
+
+    @GetMapping("/produit")
+    public String getProduit(Model model) {
+        return "cookie_produit";
+    }
+
+    @GetMapping("/panier")
+    public String getPanier(Model model) {
+        return "cookie_panier";
     }
 
     /*----------------------------
