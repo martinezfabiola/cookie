@@ -1,6 +1,7 @@
 <html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <link rel="shortcut icon" href="./img/icon-cookie.png">
+    <title>Cookie Shop</title>
 </head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,7 @@
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="text" class="form-control field" th:field="*{lastname}" id="nom" placeholder="Nom" name="nom" >
+                <input type="text" class="form-control field" th:field="*{lastname}" id="nom" placeholder="Nom" name="nom"  >
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -33,7 +34,7 @@
         <div class="row">
             <!-- Email -->
             <div class="form-group col-lg-4">
-                <input type="email" class="form-control field" id="email" placeholder="Email" name="email" th:field="*{email}">
+                <input type="email" class="form-control field" id="email" placeholder="Email" name="email" th:field="*{email}" >
             </div>
             <!-- Adresse -->
             <div class="form-group col-lg-4">
@@ -49,15 +50,15 @@
         <div class="row">
             <!-- Telephone -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone" th:field="*{phone}">
+                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone" th:field="*{phone}" >
             </div>
             <!-- CP / Ville -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville" name="cp_ville" th:field="*{citycode}">
+                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville" name="cp_ville" th:field="*{citycode}" >
             </div>
             <!-- Confirmation mot de passe -->
             <div class="form-group col-lg-4">
-                <input type="password" class="form-control field mdp_margin" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp">
+                <input type="password" class="form-control field mdp_margin" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp" >
                 <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()"> Voir mon mot de passe
             </div>
         </div>

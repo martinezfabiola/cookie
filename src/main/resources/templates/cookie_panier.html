@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<title></title>
+	<link rel="shortcut icon" href="./img/icon-cookie.png">
+	<title>Cookie Shop</title>
 </head>
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link href="../css/creative.css" rel="stylesheet">
@@ -20,16 +21,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#prod" style="font-size : 1.5em;">Produits</a>
+              <a class="nav-link js-scroll-trigger" href="/accueil#prod" style="font-size : 1.5em;">Produits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#commandes" style="font-size : 1.5em;">Commandes</a>
+              <a class="nav-link js-scroll-trigger" href="/atelier" style="font-size : 1.5em;">Atelier</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact" style="font-size : 1.5em;">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="/accueil#contact" style="font-size : 1.5em;">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#shop" style="font-size : 1.5em;"><i class="fas fa-shopping-cart"></i></a>
+              <a class="nav-link js-scroll-trigger" href="/panier" style="font-size : 1.5em;"><i class="fas fa-shopping-cart"></i></a>
             </li>
           </ul>
         </div>
@@ -41,60 +42,38 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10 white_box text-center">
 			<div class="table-responsive">
+				
+				<!-- Products table -->
 				<table class="table" align="center !important">
 					<thead align="center !important">
 						<tr>
 							<th>Produit</th>
 							<th>Prix unitaire</th>
 							<th>Quantité</th>
-							<th>Prix TTL</th>
 						</tr>
 					</thead>
 
-					<tbody>
-						<tr>
-							<td class="text-center"><img src="../img/cookiechocb.png" style="width: 90px;height: 70px;"></td>
-							<td class="text-center">2.50 €</td>
-							<td class="text-center">
-								<form action="">
-									<input type="number" class="box chunck" name="quantity" min="0" max="10" step="1" value="1" style="font-size: 20px;  border-radius: 6px; border-color: #648abb; color:#648abb;">
-								</form>
-							</td>
-							<td class="text-center">5 €</td>
-						</tr>
-						<tr>
-							<td class="text-center"><img src="../img/cookienature.png" style="width: 90px;height: 70px;"></td>
-							<td class="text-center">2.50 €</td>
-							<td class="text-center">
-								<form action="">
-									<input type="number" class="box chunck" name="quantity" min="0" max="10" step="1" value="1" style="font-size: 20px;  border-radius: 6px; border-color: #648abb; color:#648abb;">
-								</form>
-							</td>
-							<td class="text-center">5 €</td>
-						</tr>
-						<tr>
-							<td class="text-center"><img src="../img/cookiemyrt.png" style="width: 90px;height: 70px;"></td>
-							<td class="text-center">2.50 €</td>
-							<td class="text-center">
-								<form action="">
-									<input type="number" class="box chunck" name="quantity" min="0" max="10" step="1" value="1" style="font-size: 20px;  border-radius: 6px; border-color: #648abb; color:#648abb;">
-								</form>
-							</td>
-							<td class="text-center">5 €</td>
+					<tbody th:unless="${#lists.isEmpty(items)}">
+						<tr th:each="item : ${items}">
+							<td class="text-center"><img th:src="${item.photo}" style="width: 90px;height: 70px;"></td>
+							<td class="text-center" th:text="${item.price}"><b>€</b></td>
+							<td class="text-center" th:text="${item.quantity}"></td>
 						</tr>
 					</tbody>
+				
 				</table>
 			</div>
+			
+			<!-- Button for valide and delete the shopping car -->
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10 text-center">
-					<b>Total:</b>
-					<!--<input type="text" name="lastname">-->
+					<b>Total: </b> <b th:text="${total}"></b><b>€</b>
 					</br></br>
 					<div class="intro-button mx-auto">
-						<a class="btn btn-primary btn-xl js-scroll-trigger chunck" href=""> <span class="chunck">Valider le panier</span></a>
+						<a class="btn btn-primary btn-xl js-scroll-trigger chunck" href="/commande"> <span class="chunck">Valider le panier</span></a>
 					</div></br>
-					<a href=""> Supprimer le panier</a>
+					<a href="/deleteShopbag"> Supprimer le panier</a>
 				</div>
 				<div class="col-md-1"></div>
 			</div>

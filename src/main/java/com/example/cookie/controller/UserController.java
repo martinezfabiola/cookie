@@ -1,6 +1,7 @@
 package com.example.cookie.controller;
 
 import com.example.cookie.models.ConnexionInfo;
+import com.example.cookie.models.ShopBag;
 import com.example.cookie.models.User;
 import com.example.cookie.persistance.UserDao;
 import org.springframework.stereotype.Controller;
@@ -8,14 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
- * TODO class details.
- *
- * @author Loïc Ortola on 10/09/2018
+ * @author Yannica Djaffar on 08/10/2018
+ * @author Marie-Odile McKeeney on 08/10/2018
+ * @author Fabiola Martinez on 08/10/2018
  */
 @Controller
 public class UserController {
@@ -25,17 +25,6 @@ public class UserController {
     public UserController(UserDao userDao) {
         this.userDao = userDao;
     }
-
-    /**
-     * Ceci sera mappé sur l'URL '/users'.
-     * C'est le routeur de Spring MVC qui va détecter et appeler directement cette méthode.
-     * Il lui fournira un "modèle", auquel on pourra rajouter des attributs.
-     * Ce modèle sera ensuite forwardé à une page web (dans resources/templates).
-     * Le nom de la template est retourné par la fonction. Ici, elle appelle donc le template "users".
-     *
-     * @param model le modèle
-     * @return
-     */
 
     /*----------------------------
                MAPPING
@@ -50,8 +39,12 @@ public class UserController {
     @PostMapping("/inscription")
     public String addUser(User user, Model model) {
         if (checkInscription(user) == true) {
+            ShopBag shopbag = new ShopBag(0);
+            user.setShopbag(shopbag);
+            user.setWallet(100);
             userDao.save(user);
-            return "redirect:/accueil";
+
+            return "redirect:/connexion";
         }
         return "redirect:/inscription"; //TODO add message "compte déjà existant"
     }
@@ -63,14 +56,18 @@ public class UserController {
     }
 
     @PostMapping("/connexion")
-    public String userConnexion(User user, Model model) {
+    public String userConnexion(HttpServletRequest request, User user, Model model) {
         if (checkConnexion(user) == true) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            session.setAttribute("nextProd",1);
+
             return "redirect:/accueil";
         } else {
             return "redirect:/oops";
         }
     }
-
 
     @GetMapping("/accueil")
     public String getAccueil(Model model) {
@@ -82,15 +79,6 @@ public class UserController {
         return "oops";
     }
 
-    @GetMapping("/produit")
-    public String getProduit(Model model) {
-        return "cookie_produit";
-    }
-
-    @GetMapping("/panier")
-    public String getPanier(Model model) {
-        return "cookie_panier";
-    }
 
     /*----------------------------
            OTHER METHODS

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="shortcut icon" href="./img/icon-cookie.png">
+    <title>Cookie Shop</title>
+</head>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link href="../css/creative.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/cookie_produit_panier.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container chunck">
+        <a class="navbar-brand js-scroll-trigger chunck" href="#page-top">Cookies.Me</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/accueil#prod" style="font-size : 1.5em;">Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/atelier" style="font-size : 1.5em;">Atelier</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/accueil#contact" style="font-size : 1.5em;">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/panier" style="font-size : 1.5em;"><i class="fas fa-shopping-cart"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row ">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 white_box text-center">
+            <h1 style="font-family: 'chunkfive print';">Votre commande est en chemin!</h1><br><br>
+            <img src="../img/box-cookie.png" style="width: 40%">
+            <div class="row ">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 blue_box text-center">
+                    <h4 style="font-family: 'chunkfive print';">Dans votre wallet vous avez:</h4>
+                    <b th:text="${current_wallet}" style="font-size: 30px"></b>
+                     <b style="font-size: 30px">€</b>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+</body>
+</html>

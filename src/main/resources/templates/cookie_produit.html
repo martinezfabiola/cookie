@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-	<title></title>
+	<link rel="shortcut icon" href="./img/icon-cookie.png">
+	<title>Cookie Shop</title>
 </head>
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link href="../css/creative.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/cookie_produit_panier.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
@@ -13,23 +15,23 @@
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container chunck">
-        <a class="navbar-brand js-scroll-trigger chunck" href="#page-top">Cookies.Me</a>
+        <a class="navbar-brand js-scroll-trigger chunck" href="/accueil">Cookies.Me</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#prod" style="font-size : 1.5em;">Produits</a>
+              <a class="nav-link js-scroll-trigger" href="/accueil#prod" style="font-size : 1.5em;">Produits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#commandes" style="font-size : 1.5em;">Commandes</a>
+              <a class="nav-link js-scroll-trigger" href="/atelier" style="font-size : 1.5em;">Atelier</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact" style="font-size : 1.5em;">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="/accueil#contact" style="font-size : 1.5em;">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#shop" style="font-size : 1.5em;"><i class="fas fa-shopping-cart"></i></a>
+              <a class="nav-link js-scroll-trigger" href="/panier" style="font-size : 1.5em;"><i class="fas fa-shopping-cart"></i></a>
             </li>
           </ul>
         </div>
@@ -40,6 +42,8 @@
 	<div class="row ">
 		<div class="col-md-1"></div>
 		<div class="col-md-10 blue_box">
+			
+			<!-- Cookie description -->
 			<div class="row">
 				<div class="col-md-5 vcenter">
 					<img src="../img/cookiechocb.png" style="width: 100%"></br></br>
@@ -61,6 +65,7 @@
 				</div>
 			</div>
 
+			<!-- Button add cookie -->
 			<div class="row">
 				<div class="col-lg-5 white text-center">
 					<a class="chunck" style="font-size: 32px;">2,00 €</a>
@@ -68,14 +73,14 @@
 				<div class="col-lg-1">
 				</div>
 				<div class="col-lg-6">
-					<form action="">
-						<!--<b class="white">Quantité:</b>-->
-						<input type="number" class="box chunck" name="quantity" min="0" max="10" step="1" value="1" style="font-size: 20px;  border-radius: 6px; border-color: #648abb; color:#648abb;">
-						<input value="Ajouter au panier" type="submit button" class="btn btn-primary btn-xl js-scroll-trigger size" style="font-family: 'chunkfive print';">
+					<form action="#" th:action="@{/product}" th:object="${productForm}" method="post">
+						<input type="number" class="box chunck" th:field="*{quantity}" name="quantity" min="1" max="10" step="1" value="1" style="font-size: 20px;  border-radius: 6px; border-color: #648abb; color:#648abb;">
+						<button type="submit" class="btn btn-primary js-scroll-trigger chunck" style="font-family: 'chunkfive print';">Ajouter au panier</button>
 					</form><br>
 				</div>
 			</div>
 
+			<!-- Link to products -->
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4 text-center" style="padding-top: 30px;">
