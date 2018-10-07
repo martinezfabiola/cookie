@@ -1,11 +1,13 @@
-# cookie
-Cookie Website.
+# Cookie Website
+
 The objective of the website is to enable users to order cookies that will be freshly done and sent. 
 
-Authors
+# Authors
+
 The website has been created by : Yannica DJAFFAR, Fabiola MARTINEZ and Marie-Odile McKEENEY.
 
-Description
+# Description
+
 The website has several pages which are the following :
 •	Sign In page,
 •	Sign Up page,
@@ -14,7 +16,8 @@ The website has several pages which are the following :
 •	Order tracking page, where the user can follow the state of its order,
 •	Contact page, where the users can leave a comment or suggestion..
 
-Prerequisites
+# Prerequisites
+
 To run our app it is necessary to use a Web server. Our suggestions are :
 •	For Windows : WampServer - http://www.wampserver.com/
 •	For MAC OS : MANP - https://www.mamp.info/en/
@@ -22,7 +25,8 @@ To run our app it is necessary to use a Web server. Our suggestions are :
 Once installed you will need to create user and a password to access all of your databases. Keep them in mind we will need them in the future.
 To run the app we chose to use Intellij (https://www.jetbrains.com/idea/ if you wish to download it).
 
-Installing
+# Installing
+
 Now you have our code in front of you ! In order to run the app correctly here are a few steps to follow :
 
 •	Go to ressources>application.properties
