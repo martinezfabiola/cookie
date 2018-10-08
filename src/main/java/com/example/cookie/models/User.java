@@ -129,5 +129,5 @@ public class User {
         return wallet;
     }
 
-    public void setWallet(int wallet) { this.wallet= wallet; }
+    public void setWallet(int wallet) { this.wallet= 100; }
 }

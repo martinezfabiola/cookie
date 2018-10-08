@@ -34,4 +34,12 @@ public class ShopBag {
     public void setTotal(int total) {
         this.total = total;
     }
+
+    @Override
+    public String toString() {
+        return "ShopBag{" +
+                "id=" + id +
+                ", total=" + total +
+                '}';
+    }
 }

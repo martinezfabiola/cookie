@@ -35,13 +35,13 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private  UserDao userDao;
+    private UserDao userDao;
 
     @Autowired
-    private  ProductDao productDao;
+    private ProductDao productDao;
 
     @Autowired
-    private  PurchaseReceiptDao purchasereceiptDao;
+    private PurchaseReceiptDao purchasereceiptDao;
 
     @Autowired
     private ShopBagDao shopbagDao;
@@ -138,8 +138,8 @@ public class ProductController {
 
         Product cb = new Product("chocolat blanc", 2, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
         purchasereceipt.setShopbag(shopbag);
         purchasereceipt.setProduct(cb);
@@ -150,7 +150,7 @@ public class ProductController {
         shopbagDao.save(shopbag);
 
         model.addAttribute("items", showItem(request));
-        model.addAttribute("total",curren_total);
+        model.addAttribute("total", curren_total);
 
         return "cookie_panier";
     }
@@ -166,8 +166,8 @@ public class ProductController {
 
         Product cb = new Product("Double Chocolat", 2, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
         purchasereceipt.setShopbag(shopbag);
         purchasereceipt.setProduct(cb);
@@ -178,7 +178,7 @@ public class ProductController {
         shopbagDao.save(shopbag);
 
         model.addAttribute("items", showItem(request));
-        model.addAttribute("total",curren_total);
+        model.addAttribute("total", curren_total);
 
         return "cookie_panier";
     }
@@ -194,8 +194,8 @@ public class ProductController {
 
         Product cb = new Product("Chocolat Noir", 2, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
         purchasereceipt.setShopbag(shopbag);
         purchasereceipt.setProduct(cb);
@@ -206,7 +206,7 @@ public class ProductController {
         shopbagDao.save(shopbag);
 
         model.addAttribute("items", showItem(request));
-        model.addAttribute("total",curren_total);
+        model.addAttribute("total", curren_total);
 
         return "cookie_panier";
     }
@@ -222,8 +222,8 @@ public class ProductController {
 
         Product cb = new Product("M&M", 2, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
         purchasereceipt.setShopbag(shopbag);
         purchasereceipt.setProduct(cb);
@@ -234,7 +234,7 @@ public class ProductController {
         shopbagDao.save(shopbag);
 
         model.addAttribute("items", showItem(request));
-        model.addAttribute("total",curren_total);
+        model.addAttribute("total", curren_total);
 
         return "cookie_panier";
     }
@@ -243,28 +243,33 @@ public class ProductController {
     @PostMapping("/productM")
     public String addProductM(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        File photo = new File("../img/cookiemyrt.png");
+            File photo = new File("../img/cookiemyrt.png");
 
-        Product cb = new Product("Myrtilles", 2, photo);
+            Product cb = new Product("Myrtilles", 2, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total",curren_total);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", curren_total);
 
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
@@ -278,8 +283,8 @@ public class ProductController {
 
         Product cb = new Product("Nature", 2, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
         purchasereceipt.setShopbag(shopbag);
         purchasereceipt.setProduct(cb);
@@ -290,7 +295,7 @@ public class ProductController {
         shopbagDao.save(shopbag);
 
         model.addAttribute("items", showItem(request));
-        model.addAttribute("total",(curren_total));
+        model.addAttribute("total", (curren_total));
 
         return "cookie_panier";
     }
@@ -306,8 +311,8 @@ public class ProductController {
 
         Product cb = new Product("Atelier", 5, photo);
 
-        int current_quantity = checkQuantity(cb,purchasereceipt,checkShopbag(request));
-        int curren_total = (cb.getPrice()* purchasereceipt.getQuantity()) + total;
+        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
         purchasereceipt.setShopbag(shopbag);
         purchasereceipt.setProduct(cb);
@@ -318,7 +323,7 @@ public class ProductController {
         shopbagDao.save(shopbag);
 
         model.addAttribute("items", showItem(request));
-        model.addAttribute("total",(curren_total));
+        model.addAttribute("total", (curren_total));
 
         return "cookie_panier";
     }
@@ -327,19 +332,19 @@ public class ProductController {
     @GetMapping("/deleteShopbag")
     public String deleteShopbag(HttpServletRequest request, ModelMap model) {
 
-        List <Item> items = new ArrayList<Item>();
+        List<Item> items = new ArrayList<Item>();
 
         ShopBag shopbag = checkShopbag(request);
         shopbag.setTotal(0);
 
         for (PurchaseReceipt purchase : purchasereceiptDao.findAll()) {
             if (purchase.getShopbag() == shopbag) {
-                    purchasereceiptDao.delete(purchase);
+                purchasereceiptDao.delete(purchase);
             }
         }
 
         model.addAttribute("items", items);
-        model.addAttribute("total",0);
+        model.addAttribute("total", 0);
 
         return "cookie_panier";
     }
@@ -388,19 +393,16 @@ public class ProductController {
     }
 
     // Returns the shopbag object of an specific user
-    public ShopBag checkShopbag(HttpServletRequest request){
-
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-
+    public ShopBag checkShopbag(HttpServletRequest request) {
         ShopBag shopbag = new ShopBag();
-
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        // user IS logged in, do something: set model or do whatever you need
         for (User u : userDao.findAll()) {
             if (user.getEmail().equals(u.getEmail())) {
                 shopbag = u.getShopbag();
             }
         }
-
         return shopbag;
     }
 
@@ -411,9 +413,9 @@ public class ProductController {
 
         ShopBag shopbag = checkShopbag(request);
 
-        for (PurchaseReceipt purchase : purchasereceiptDao.findAll() ){
+        for (PurchaseReceipt purchase : purchasereceiptDao.findAll()) {
 
-            if (shopbag.getId() == purchase.getShopbag().getId()){
+            if (shopbag.getId() == purchase.getShopbag().getId()) {
 
                 Product product = purchase.getProduct();
 
@@ -426,7 +428,7 @@ public class ProductController {
     }
 
     // Returns the current product's quantity
-    public int checkQuantity(Product product, PurchaseReceipt currentPurchase, ShopBag userShopbag){
+    public int checkQuantity(Product product, PurchaseReceipt currentPurchase, ShopBag userShopbag) {
 
         int current_quantity = currentPurchase.getQuantity();
 
@@ -444,10 +446,11 @@ public class ProductController {
     }
 
     // Get wallet amount
-    public int checkWallet(User user, ShopBag shopBag){
+    public int checkWallet(User user, ShopBag shopBag) {
 
         int current_wallet = user.getWallet() - shopBag.getTotal();
 
         return current_wallet;
     }
+
 }

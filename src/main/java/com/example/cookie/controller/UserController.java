@@ -43,29 +43,39 @@ public class UserController {
             user.setShopbag(shopbag);
             user.setWallet(100);
             userDao.save(user);
-
             return "redirect:/connexion";
         }
         return "redirect:/inscription"; //TODO add message "compte déjà existant"
     }
 
     @GetMapping("/connexion")
-    public String getConnexion(Model model) {
+    public String getConnexion(HttpServletRequest request, Model model) {
         model.addAttribute("userForm", new ConnexionInfo());
+        clearSession(request);
         return "cookie_connexion";
     }
 
     @PostMapping("/connexion")
     public String userConnexion(HttpServletRequest request, User user, Model model) {
         if (checkConnexion(user) == true) {
-
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("nextProd",1);
-
             return "redirect:/accueil";
         } else {
             return "redirect:/oops";
+        }
+    }
+
+    @PostMapping("/panier")
+    public String buyOnlyIfConnected (HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, do something about it
+            return "redirect:/accueil";
+        } else {
+            // user IS logged in, do something: set model or do whatever you need
+            return "redirect:/panier";
         }
     }
 
@@ -104,6 +114,11 @@ public class UserController {
             }
         }
         return true;
+    }
+
+    public void clearSession (HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
     }
 
 }

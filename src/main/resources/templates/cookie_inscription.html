@@ -43,7 +43,7 @@
             <!-- Mot de passe -->
             <div class="form-group col-lg-4">
                 <input type="password" class="form-control field mdp_margin" id="mdp" placeholder="Mot de passe" name="mdp" th:field="*{password}">
-                <input type="checkbox" class="mdp_font_color" onclick="functionMDP()"> Voir mon mot de passe
+                <input type="checkbox" class="mdp_font_color" onclick="functionMDP()" style ="color:white;"> Voir mon mot de passe
             </div>
         </div>
 
@@ -59,13 +59,13 @@
             <!-- Confirmation mot de passe -->
             <div class="form-group col-lg-4">
                 <input type="password" class="form-control field mdp_margin" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp" >
-                <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()"> Voir mon mot de passe
+                <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()" style ="color:white;"> Voir mon mot de passe
             </div>
         </div>
         <div class="row">
         	<div class="col-md-4"></div>
         	<div class="col-md-4 text-center">
-        		<button type="submit" class="btn btn-primary">C'est parti !</button>
+        		<button type="submit" class="btn btn-primary" onclick="validatepassword()">C'est parti !</button>
         	</div>
         	<div class="col-md-4"></div>
         </div>
@@ -101,6 +101,21 @@ function functionCMDP() {
     } else {
         x.type = "password";
     }
+
+function validatePassword(){
+    var password = document.getElementById("mdp");
+    var confirm_password = document.getElementById("conf_mdp");
+
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Les mots de passe ne correspondent pas !");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+
 }
 </script>
 </html>
