@@ -18,8 +18,6 @@ The website has several pages which are the following :
 
 •	Atelier page, where the user can create your own cookie with the association of one paste and one topping, then order them
 
-•	Order tracking page, where the user can follow the state of its order,
-
 •	Contact page, where the users can leave a comment or suggestion..
 
 # Prerequisites
