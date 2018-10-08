@@ -72,6 +72,11 @@ public class ProductController {
                 for (ShopBag shopbag : shopbagDao.findAll()) {
                     if (u.getShopbag().getId() == shopbag.getId()) {
                         current_wallet = u.getWallet() - shopbag.getTotal();
+
+                        if(current_wallet <= 0){
+
+                            return "redirect:/emptywallet";
+                        }
                     }
                 }
             }
@@ -81,8 +86,20 @@ public class ProductController {
         return "commande";
     }
 
+    @GetMapping("/emptywallet")
+    public String showWallet() {
+        return "empty_wallet";
+    }
+
     @GetMapping("/panier")
-    public String showPannier() {
+    public String showPannier(HttpServletRequest request, Model model) {
+
+        ShopBag shopbag = checkShopbag(request);
+        int total = shopbag.getTotal();
+
+        model.addAttribute("items", showItem(request));
+        model.addAttribute("total", total);
+
         return "cookie_panier";
     }
 
@@ -163,6 +180,7 @@ public class ProductController {
     @Scope("session")
     @PostMapping("/productDC")
     public String addProductDC(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
             return "redirect:/connexion";
@@ -195,6 +213,7 @@ public class ProductController {
     @Scope("session")
     @PostMapping("/productCN")
     public String addProductCN(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
             return "redirect:/connexion";
@@ -227,6 +246,7 @@ public class ProductController {
     @Scope("session")
     @PostMapping("/productMandM")
     public String addProductMM(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
             return "redirect:/connexion";
@@ -292,6 +312,7 @@ public class ProductController {
     @Scope("session")
     @PostMapping("/productN")
     public String addProductN(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
             return "redirect:/connexion";
@@ -324,6 +345,7 @@ public class ProductController {
     @Scope("session")
     @PostMapping("/productAtelier")
     public String addProductAtelier(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
             return "redirect:/connexion";
