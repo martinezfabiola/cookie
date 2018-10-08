@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -46,7 +45,7 @@ public class UserController {
             userDao.save(user);
             return "redirect:/connexion";
         }
-        return "redirect:/inscription"; //TODO add message "compte déjà existant"
+        return "redirect:/inscription";
     }
 
     @GetMapping("/connexion")
@@ -111,9 +110,6 @@ public class UserController {
     public boolean checkInscription(User user) {
         for (User u : userDao.findAll()) {
             if (user.getEmail().equals(u.getEmail())) {
-                return false;
-            }
-            if (user.getPassword().equals(user.getConfirmpassword())) {
                 return false;
             }
         }

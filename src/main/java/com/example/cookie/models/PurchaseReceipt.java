@@ -1,7 +1,6 @@
 package com.example.cookie.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
 
