@@ -17,7 +17,7 @@
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <input type="text" class="form-control field" th:field="*{lastname}" id="nom" placeholder="Nom"
-                       name="nom">
+                       name="nom" required>
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -27,7 +27,7 @@
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <input type="text" class="form-control field" id="prenom" placeholder="Prenom" name="prenom"
-                       th:field="*{firstname}">
+                       th:field="*{firstname}" required>
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -37,17 +37,17 @@
             <!-- Email -->
             <div class="form-group col-lg-4">
                 <input type="email" class="form-control field" id="email" placeholder="Email" name="email"
-                       th:field="*{email}">
+                       th:field="*{email}" required>
             </div>
             <!-- Adresse -->
             <div class="form-group col-lg-4">
                 <input type="text" class="form-control field" id="adresse" placeholder="Adresse" name="adresse"
-                       th:field="*{address}">
+                       th:field="*{address}" required>
             </div>
             <!-- Mot de passe -->
             <div class="form-group col-lg-4">
                 <input type="password" class="form-control field mdp_margin" id="mdp" placeholder="Mot de passe"
-                       name="mdp" th:field="*{password}">
+                       name="mdp" th:field="*{password}" onchange='check_pass();' required>
                 <input type="checkbox" class="mdp_font_color" onclick="functionMDP()" style="color:white;"> Voir mon mot
                 de passe
             </div>
@@ -57,17 +57,17 @@
             <!-- Telephone -->
             <div class="form-group col-lg-4">
                 <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone"
-                       th:field="*{phone}">
+                       th:field="*{phone}" required>
             </div>
             <!-- CP / Ville -->
             <div class="form-group col-lg-4">
                 <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville"
-                       name="cp_ville" th:field="*{citycode}">
+                       name="cp_ville" th:field="*{citycode}" required>
             </div>
             <!-- Confirmation mot de passe -->
             <div class="form-group col-lg-4">
                 <input type="password" class="form-control field mdp_margin" id="conf_mdp"
-                       placeholder="Confirmation mot de passe:" name="conf_mdp">
+                       placeholder="Confirmation mot de passe:" name="conf_mdp" onchange='check_pass();' required>
                 <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()" style="color:white;"> Voir mon
                 mot de passe
             </div>
@@ -76,7 +76,7 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4 text-center">
-                <button type="submit" class="btn btn-primary" onclick="validatePassword()">C'est parti !</button>
+                <input type="submit" name="submit"  value="C'est parti !"  id="submit" disabled/>
             </div>
             <div class="col-md-4"></div>
         </div>
@@ -112,7 +112,15 @@ function functionCMDP() {
     } else {
         x.type = "password";
     }
+}
 
-
+function check_pass() {
+    if (document.getElementById('mdp').value ==
+            document.getElementById('conf_mdp').value) {
+        document.getElementById('submit').disabled = false;
+    } else {
+        document.getElementById('submit').disabled = true;
+    }
+}
 </script>
 </html>
