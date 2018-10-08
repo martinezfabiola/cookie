@@ -113,9 +113,7 @@ public class UserController {
             if (user.getEmail().equals(u.getEmail())) {
                 return false;
             }
-            if (user.getPassword().equals(user.getConfirmpassword())) {
-                return false;
-            }
+
         }
         return true;
     }
