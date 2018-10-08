@@ -33,6 +33,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "confirmpassword")
+    private String confirmpassword;
+
     @Column(name = "wallet")
     private int wallet;
 
@@ -42,7 +45,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String lastname, String email, String phone, String address, String citycode, String password, int wallet) {
+    public User(String name, String lastname, String email, String phone, String address, String citycode, String password, String confirmpassword, int wallet) {
         this.firstname = name;
         this.lastname = lastname;
         this.email = email;
@@ -50,6 +53,7 @@ public class User {
         this.address = address;
         this.citycode = citycode;
         this.password = password;
+        this.confirmpassword = confirmpassword;
         this.wallet = wallet;
     }
 
@@ -115,6 +119,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmpassword() {
+        return confirmpassword;
+    }
+
+    public void setConfirmpassword(String confirmpassword) {
+        this.confirmpassword = confirmpassword;
     }
 
     public ShopBag getShopbag() {

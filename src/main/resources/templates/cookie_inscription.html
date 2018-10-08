@@ -16,7 +16,8 @@
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="text" class="form-control field" th:field="*{lastname}" id="nom" placeholder="Nom" name="nom"  >
+                <input type="text" class="form-control field" th:field="*{lastname}" id="nom" placeholder="Nom"
+                       name="nom">
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -25,7 +26,8 @@
         <div class="form-group row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
-                <input type="text" class="form-control field" id="prenom" placeholder="Prenom" name="prenom" th:field="*{firstname}">
+                <input type="text" class="form-control field" id="prenom" placeholder="Prenom" name="prenom"
+                       th:field="*{firstname}">
             </div>
             <div class="col-lg-4"></div>
         </div>
@@ -34,53 +36,62 @@
         <div class="row">
             <!-- Email -->
             <div class="form-group col-lg-4">
-                <input type="email" class="form-control field" id="email" placeholder="Email" name="email" th:field="*{email}" >
+                <input type="email" class="form-control field" id="email" placeholder="Email" name="email"
+                       th:field="*{email}">
             </div>
             <!-- Adresse -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="adresse" placeholder="Adresse" name="adresse" th:field="*{address}">
+                <input type="text" class="form-control field" id="adresse" placeholder="Adresse" name="adresse"
+                       th:field="*{address}">
             </div>
             <!-- Mot de passe -->
             <div class="form-group col-lg-4">
-                <input type="password" class="form-control field mdp_margin" id="mdp" placeholder="Mot de passe" name="mdp" th:field="*{password}">
-                <input type="checkbox" class="mdp_font_color" onclick="functionMDP()" style ="color:white;"> Voir mon mot de passe
+                <input type="password" class="form-control field mdp_margin" id="mdp" placeholder="Mot de passe"
+                       name="mdp" th:field="*{password}">
+                <input type="checkbox" class="mdp_font_color" onclick="functionMDP()" style="color:white;"> Voir mon mot
+                de passe
             </div>
         </div>
 
         <div class="row">
             <!-- Telephone -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone" th:field="*{phone}" >
+                <input type="text" class="form-control field" id="telephone" placeholder="Téléphone" name="telephone"
+                       th:field="*{phone}">
             </div>
             <!-- CP / Ville -->
             <div class="form-group col-lg-4">
-                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville" name="cp_ville" th:field="*{citycode}" >
+                <input type="text" class="form-control field" id="cp_ville" placeholder="Code postal / Ville"
+                       name="cp_ville" th:field="*{citycode}">
             </div>
             <!-- Confirmation mot de passe -->
             <div class="form-group col-lg-4">
-                <input type="password" class="form-control field mdp_margin" id="conf_mdp" placeholder="Confirmation mot de passe:" name="conf_mdp" >
-                <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()" style ="color:white;"> Voir mon mot de passe
+                <input type="password" class="form-control field mdp_margin" id="conf_mdp"
+                       placeholder="Confirmation mot de passe:" name="conf_mdp">
+                <input type="checkbox" class="mdp_font_color" onclick="functionCMDP()" style="color:white;"> Voir mon
+                mot de passe
             </div>
         </div>
+        <p id="inscriptionMessage" style="color:white; text-align:center,"></p>
         <div class="row">
-        	<div class="col-md-4"></div>
-        	<div class="col-md-4 text-center">
-        		<button type="submit" class="btn btn-primary" onclick="validatepassword()">C'est parti !</button>
-        	</div>
-        	<div class="col-md-4"></div>
-        </div>
-
-		</form>
-        <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4 text-center">
-                <a href="connexion">
-                    Déjà inscrit ?  Connecte-toi !
-                </a>
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-center">
+                <button type="submit" class="btn btn-primary">C'est parti !</button>
             </div>
-
-            <div class="col-lg-4"></div>
+            <div class="col-md-4"></div>
         </div>
+
+    </form>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 text-center">
+            <a href="connexion">
+                Déjà inscrit ? Connecte-toi !
+            </a>
+        </div>
+
+        <div class="col-lg-4"></div>
+    </div>
 
 </div>
 </body>
@@ -102,20 +113,5 @@ function functionCMDP() {
         x.type = "password";
     }
 
-function validatePassword(){
-    var password = document.getElementById("mdp");
-    var confirm_password = document.getElementById("conf_mdp");
-
-      if(password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Les mots de passe ne correspondent pas !");
-      } else {
-        confirm_password.setCustomValidity('');
-      }
-    }
-
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
-
-}
 </script>
 </html>

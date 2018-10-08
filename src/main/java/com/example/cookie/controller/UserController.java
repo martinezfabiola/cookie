@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -51,7 +52,7 @@ public class UserController {
     @GetMapping("/connexion")
     public String getConnexion(HttpServletRequest request, Model model) {
         model.addAttribute("userForm", new ConnexionInfo());
-        clearSession(request);
+        clearSession(request, request.getSession());
         return "cookie_connexion";
     }
 
@@ -60,7 +61,7 @@ public class UserController {
         if (checkConnexion(user) == true) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            session.setAttribute("nextProd",1);
+            session.setAttribute("nextProd", 1);
             return "redirect:/accueil";
         } else {
             return "redirect:/oops";
@@ -68,7 +69,7 @@ public class UserController {
     }
 
     @PostMapping("/panier")
-    public String buyOnlyIfConnected (HttpServletRequest request) {
+    public String buyOnlyIfConnected(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, do something about it
@@ -112,13 +113,16 @@ public class UserController {
             if (user.getEmail().equals(u.getEmail())) {
                 return false;
             }
+            if (user.getPassword().equals(user.getConfirmpassword())) {
+                return false;
+            }
         }
         return true;
     }
 
-    public void clearSession (HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.invalidate();
+    public void clearSession(HttpServletRequest request, HttpSession session) {
+        session = request.getSession();
+        session.removeAttribute("user");
     }
 
 }

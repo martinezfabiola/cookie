@@ -131,112 +131,129 @@ public class ProductController {
     @PostMapping("/product")
     public String addProduct(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        File photo = new File("../img/cookiechocb.png");
+            File photo = new File("../img/cookiechocb.png");
 
-        Product cb = new Product("chocolat blanc", 2, photo);
+            Product cb = new Product("chocolat blanc", 2, photo);
 
-        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
-        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total", curren_total);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", curren_total);
 
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
     @PostMapping("/productDC")
     public String addProductDC(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+            File photo = new File("../img/cookiedoublechoc.png");
 
-        File photo = new File("../img/cookiedoublechoc.png");
+            Product cb = new Product("Double Chocolat", 2, photo);
 
-        Product cb = new Product("Double Chocolat", 2, photo);
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
-        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", curren_total);
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total", curren_total);
-
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
     @PostMapping("/productCN")
     public String addProductCN(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+            File photo = new File("../img/cookiechocn.png");
 
-        File photo = new File("../img/cookiechocn.png");
+            Product cb = new Product("Chocolat Noir", 2, photo);
 
-        Product cb = new Product("Chocolat Noir", 2, photo);
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
-        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", curren_total);
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total", curren_total);
-
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
     @PostMapping("/productMandM")
     public String addProductMM(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+            File photo = new File("../img/cookiemandm.png");
 
-        File photo = new File("../img/cookiemandm.png");
+            Product cb = new Product("M&M", 2, photo);
 
-        Product cb = new Product("M&M", 2, photo);
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
-        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", curren_total);
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total", curren_total);
-
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
@@ -275,57 +292,65 @@ public class ProductController {
     @Scope("session")
     @PostMapping("/productN")
     public String addProductN(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+            File photo = new File("../img/cookienature.png");
 
-        File photo = new File("../img/cookienature.png");
+            Product cb = new Product("Nature", 2, photo);
 
-        Product cb = new Product("Nature", 2, photo);
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
-        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", (curren_total));
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total", (curren_total));
-
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
     @PostMapping("/productAtelier")
     public String addProductAtelier(HttpServletRequest request, ModelMap model, PurchaseReceipt purchasereceipt, HttpSession session) {
+        if (session == null || session.getAttribute("user") == null) {
+            // user is not logged in, redirect to home page
+            return "redirect:/connexion";
+        } else {
+            ShopBag shopbag = checkShopbag(request);
+            int total = shopbag.getTotal();
 
-        ShopBag shopbag = checkShopbag(request);
-        int total = shopbag.getTotal();
+            File photo = new File("../img/cookie-x.png");
 
-        File photo = new File("../img/cookie-x.png");
+            Product cb = new Product("Atelier", 5, photo);
 
-        Product cb = new Product("Atelier", 5, photo);
+            int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
+            int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
 
-        int current_quantity = checkQuantity(cb, purchasereceipt, checkShopbag(request));
-        int curren_total = (cb.getPrice() * purchasereceipt.getQuantity()) + total;
+            purchasereceipt.setShopbag(shopbag);
+            purchasereceipt.setProduct(cb);
+            purchasereceipt.setQuantity(current_quantity);
+            purchasereceiptDao.save(purchasereceipt);
 
-        purchasereceipt.setShopbag(shopbag);
-        purchasereceipt.setProduct(cb);
-        purchasereceipt.setQuantity(current_quantity);
-        purchasereceiptDao.save(purchasereceipt);
+            shopbag.setTotal(curren_total);
+            shopbagDao.save(shopbag);
 
-        shopbag.setTotal(curren_total);
-        shopbagDao.save(shopbag);
+            model.addAttribute("items", showItem(request));
+            model.addAttribute("total", (curren_total));
 
-        model.addAttribute("items", showItem(request));
-        model.addAttribute("total", (curren_total));
-
-        return "cookie_panier";
+            return "cookie_panier";
+        }
     }
 
     @Scope("session")
