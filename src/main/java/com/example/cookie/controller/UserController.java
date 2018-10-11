@@ -30,63 +30,62 @@ public class UserController {
                MAPPING
     -----------------------------*/
 
-    @GetMapping("/inscription")
+    @GetMapping("/signup")
     public String getInscription(Model model) {
         model.addAttribute("userForm", new User());
-        return "cookie_inscription";
+        return "signup";
     }
 
-    @PostMapping("/inscription")
+    @PostMapping("/signup")
     public String addUser(User user, Model model) {
         if (checkInscription(user) == true) {
             ShopBag shopbag = new ShopBag(0);
             user.setShopbag(shopbag);
             user.setWallet(100);
             userDao.save(user);
-            return "redirect:/connexion";
+            return "redirect:/signin";
         }
-        return "redirect:/inscription";
+        return "redirect:/signup";
     }
 
-    @GetMapping("/connexion")
-    public String getConnexion(HttpServletRequest request, Model model) {
+    @GetMapping("/signin")
+    public String getConnection(HttpServletRequest request, Model model) {
         model.addAttribute("userForm", new ConnexionInfo());
         clearSession(request, request.getSession());
-        return "cookie_connexion";
+        return "signin";
     }
 
-    @PostMapping("/connexion")
+    @PostMapping("/signin")
     public String userConnexion(HttpServletRequest request, User user, Model model) {
         if (checkConnexion(user) == true) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            session.setAttribute("nextProd", 1);
-            return "redirect:/accueil";
+            return "redirect:/home";
         } else {
-            return "redirect:/oops";
+            return "redirect:/error";
         }
     }
 
-    @PostMapping("/panier")
+    @PostMapping("/shopbag")
     public String buyOnlyIfConnected(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, do something about it
-            return "redirect:/accueil";
+            return "redirect:/home";
         } else {
             // user IS logged in, do something: set model or do whatever you need
-            return "redirect:/panier";
+            return "redirect:/shopbag";
         }
     }
 
-    @GetMapping("/accueil")
-    public String getAccueil(Model model) {
+    @GetMapping("/home")
+    public String getHome(Model model) {
         return "index";
     }
 
-    @GetMapping("/oops")
-    public String getOops(Model model) {
-        return "oops";
+    @GetMapping("/error")
+    public String getError(Model model) {
+        return "error";
     }
 
 

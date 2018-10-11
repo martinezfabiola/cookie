@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <h2 class="chunck h2_inscription">INSCRIPTION</h2>
-    <form action="#" th:action="@{/inscription}" th:object="${userForm}" method="post">
+    <form action="#" th:action="@{/signup}" th:object="${userForm}" method="post">
 
         <!-- Nom -->
         <div class="form-group row">
@@ -85,7 +85,7 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 text-center">
-            <a href="connexion">
+            <a href="signin">
                 Déjà inscrit ? Connecte-toi !
             </a>
         </div>

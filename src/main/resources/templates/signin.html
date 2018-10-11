@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     <h2 class="chunck h2_connexion">CONNEXION</h2>
-    <form action="#" th:action="@{/connexion}" th:object="${userForm}" method="post">
+    <form action="#" th:action="@{/signin}" th:object="${userForm}" method="post">
 
         <!-- Email -->
         <div class="form-group row">
@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-4 text-center">
-                <a href="inscription">
+                <a href="signup">
                     Toujours pas inscrit ? </br>Rejoins la communauté des cookers !
                 </a>
             </div>

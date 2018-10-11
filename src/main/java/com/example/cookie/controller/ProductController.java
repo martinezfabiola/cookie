@@ -51,14 +51,14 @@ public class ProductController {
                MAPPING
     -----------------------------*/
 
-    @GetMapping("/atelier")
-    public String getAtelier(Model model) {
+    @GetMapping("/order")
+    public String getOrder(Model model) {
         model.addAttribute("productAForm", new PurchaseReceipt());
-        return "atelier";
+        return "order";
     }
 
-    @GetMapping("/commande")
-    public String showCommande(Model model, HttpServletRequest request) {
+    @GetMapping("/wallet")
+    public String showWallet(Model model, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -70,6 +70,12 @@ public class ProductController {
                     if (u.getShopbag().getId() == shopbag.getId()) {
                         current_wallet = u.getWallet() - shopbag.getTotal();
 
+                        u.setWallet(current_wallet);
+                        deleteItems(request);
+                        shopbag.setTotal(0);
+                        shopbagDao.save(shopbag);
+                        userDao.save(u);
+
                         if(current_wallet <= 0){
 
                             return "redirect:/emptywallet";
@@ -80,15 +86,15 @@ public class ProductController {
         }
 
         model.addAttribute("current_wallet", current_wallet);
-        return "commande";
+        return "wallet";
     }
 
     @GetMapping("/emptywallet")
-    public String showWallet() {
+    public String showEmptyWallet() {
         return "empty_wallet";
     }
 
-    @GetMapping("/panier")
+    @GetMapping("/shopbag")
     public String showPannier(HttpServletRequest request, Model model) {
 
         ShopBag shopbag = checkShopbag(request);
@@ -97,44 +103,44 @@ public class ProductController {
         model.addAttribute("items", showItem(request));
         model.addAttribute("total", total);
 
-        return "cookie_panier";
+        return "shopbag";
     }
 
     /*----------------------------
         MAPPING FOR ADD COOKIE
     -----------------------------*/
 
-    @GetMapping("/produit")
+    @GetMapping("/productcb")
     public String getProduit(Model model) {
         model.addAttribute("productForm", new PurchaseReceipt());
-        return "cookie_produit";
+        return "cookie_cb";
     }
 
-    @GetMapping("/produitdc")
+    @GetMapping("/productdc")
     public String getProduitdc(Model model) {
         model.addAttribute("productFormDC", new PurchaseReceipt());
         return "cookie_dc";
     }
 
-    @GetMapping("/produitcn")
+    @GetMapping("/productcn")
     public String getProduitcn(Model model) {
         model.addAttribute("productFormCN", new PurchaseReceipt());
         return "cookie_cn";
     }
 
-    @GetMapping("/produitmandm")
+    @GetMapping("/productmandm")
     public String getProduitmm(Model model) {
         model.addAttribute("productFormMM", new PurchaseReceipt());
         return "cookie_mm";
     }
 
-    @GetMapping("/produitm")
+    @GetMapping("/productm")
     public String getProduitm(Model model) {
         model.addAttribute("productFormM", new PurchaseReceipt());
         return "cookie_m";
     }
 
-    @GetMapping("/produitn")
+    @GetMapping("/productn")
     public String getProduitn(Model model) {
         model.addAttribute("productFormN", new PurchaseReceipt());
         return "cookie_n";
@@ -147,7 +153,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -170,7 +176,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", curren_total);
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -180,7 +186,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -203,7 +209,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", curren_total);
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -213,7 +219,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -236,7 +242,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", curren_total);
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -246,7 +252,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -269,7 +275,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", curren_total);
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -279,7 +285,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -302,7 +308,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", curren_total);
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -312,7 +318,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -335,7 +341,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", (curren_total));
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -345,7 +351,7 @@ public class ProductController {
 
         if (session == null || session.getAttribute("user") == null) {
             // user is not logged in, redirect to home page
-            return "redirect:/connexion";
+            return "redirect:/signin";
         } else {
             ShopBag shopbag = checkShopbag(request);
             int total = shopbag.getTotal();
@@ -368,7 +374,7 @@ public class ProductController {
             model.addAttribute("items", showItem(request));
             model.addAttribute("total", (curren_total));
 
-            return "cookie_panier";
+            return "shopbag";
         }
     }
 
@@ -381,16 +387,12 @@ public class ProductController {
         ShopBag shopbag = checkShopbag(request);
         shopbag.setTotal(0);
 
-        for (PurchaseReceipt purchase : purchasereceiptDao.findAll()) {
-            if (purchase.getShopbag() == shopbag) {
-                purchasereceiptDao.delete(purchase);
-            }
-        }
+        deleteItems(request);
 
         model.addAttribute("items", items);
         model.addAttribute("total", 0);
 
-        return "cookie_panier";
+        return "shopbag";
     }
 
     /*----------------------------
@@ -442,6 +444,7 @@ public class ProductController {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         // user IS logged in, do something: set model or do whatever you need
+
         for (User u : userDao.findAll()) {
             if (user.getEmail().equals(u.getEmail())) {
                 shopbag = u.getShopbag();
@@ -495,6 +498,17 @@ public class ProductController {
         int current_wallet = user.getWallet() - shopBag.getTotal();
 
         return current_wallet;
+    }
+
+    public void deleteItems(HttpServletRequest request){
+
+        ShopBag shopbag = checkShopbag(request);
+
+        for (PurchaseReceipt purchase : purchasereceiptDao.findAll()) {
+            if (purchase.getShopbag() == shopbag) {
+                purchasereceiptDao.delete(purchase);
+            }
+        }
     }
 
 }
