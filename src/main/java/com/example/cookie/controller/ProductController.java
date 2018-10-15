@@ -64,6 +64,7 @@ public class ProductController {
         User user = (User) session.getAttribute("user");
         int current_wallet = 0;
 
+        //Balance wallet according to user's shopping
         for (User u : userDao.findAll()) {
             if (user.getEmail().equals(u.getEmail())) {
                 for (ShopBag shopbag : shopbagDao.findAll()) {
@@ -77,7 +78,6 @@ public class ProductController {
                         userDao.save(u);
 
                         if(current_wallet <= 0){
-
                             return "redirect:/emptywallet";
                         }
                     }

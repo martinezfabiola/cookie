@@ -36,6 +36,7 @@ public class UserController {
         return "signup";
     }
 
+    //Default virtual wallet is 100€
     @PostMapping("/signup")
     public String addUser(User user, Model model) {
         if (checkInscription(user) == true) {
